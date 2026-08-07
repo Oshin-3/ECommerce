@@ -32,6 +32,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ECommerce.API.Controllers.CartController",
+    "Method": "AddToCart",
+    "RelativePath": "api/Cart/add/items",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addToCartRequestDto",
+        "Type": "ECommerce.Application.DTOs.Cart.AddToCartRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ECommerce.API.Controllers.CategoryController",
     "Method": "GetAllCategories",
     "RelativePath": "api/Category",

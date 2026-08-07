@@ -34,6 +34,30 @@ namespace ECommerce.Infrastructure.Data
             modelBuilder.Entity<Order>()
                 .Property(p => p.TotalAmount)
                 .HasPrecision(18, 2);
+
+            //User 1 - 1 Cart
+            modelBuilder.Entity<Cart>()
+                .HasOne(c => c.User)
+                .WithOne(u => u.Cart)
+                .HasForeignKey<Cart>(c => c.UserId);
+
+            //Cart 1 - many CartItem
+            modelBuilder.Entity<CartItem>()
+                .HasOne(ci => ci.Cart)
+                .WithMany(c => c.CartItems)
+                .HasForeignKey(ci => ci.CartId);
+
+            //Product 1 - many CartItem
+            modelBuilder.Entity<CartItem>()
+                .HasOne(ci => ci.Product)
+                .WithMany(p => p.CartItems)
+                .HasForeignKey(ci => ci.ProductId);
+
+            //making sure that combination must be unique CartId + ProductId
+            modelBuilder.Entity<CartItem>()
+                .HasIndex(ci => new { ci.CartId, ci.ProductId })
+                .IsUnique();
+
         }
     }
 }
