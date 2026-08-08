@@ -1,4 +1,5 @@
 ﻿using ECommerce.Application.DTOs.Cart;
+using ECommerce.Application.DTOs.CartItem;
 using ECommerce.Application.Interfaces.Repositories;
 using ECommerce.Application.Interfaces.Services;
 using ECommerce.Domain.Entities;
@@ -60,7 +61,7 @@ namespace ECommerce.Application.Services
                     Quantity = request.Quantity
                 };
                 await _cartRepository.AddCartItemAsync(cartItem);
-                await _cartRepository.SaveChangesAsync();
+                
             }
             else
             {
@@ -69,6 +70,74 @@ namespace ECommerce.Application.Services
             }
 
             await _cartRepository.SaveChangesAsync();
+        }
+
+        public async Task<bool> DeleteCartItemAsync(Guid userId, Guid cartItemId)
+        {
+            //check if cartItem exists
+            var cartItem = await _cartRepository.GetCartItemByIdAsync(userId, cartItemId);
+            if (cartItem == null)
+                return false;
+
+            
+            //delete
+            _cartRepository.DeleteCartItemAsync(cartItem);
+            await _cartRepository.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<GetCartResponseDto> GetCartAsync(Guid userId)
+        {
+            //fetch the cart
+            var cart = await _cartRepository.GetCartByUserIdAsync(userId);
+            if (cart == null)
+            {
+                return null; 
+            }
+
+            //Convert cartItem to response dto
+            var items = cart.CartItems.Select(cartItem => new CartItemResponseDto
+            {
+                CartItemId = cartItem.Id,
+                ProductId = cartItem.ProductId,
+                ProductName = cartItem.Product.Name,
+                Price = cartItem.Product.Price,
+                Quantity = cartItem.Quantity,
+                SubTotal = cartItem.Product.Price * cartItem.Quantity
+            }).ToList();
+
+            //create final cart response 
+            var response = new GetCartResponseDto
+            {
+                CartId = cart.Id,
+                Items = items,
+                TotolAmount = items.Sum(item => item.SubTotal)
+           
+            };
+
+            return response;
+           
+        }
+
+        public async Task<bool> UpdateCartAsync(Guid userId, Guid cartItemId, UpdateCartRequestDto request)
+        {
+            //verify quantity
+            if(request.Quantity <= 0)
+            {
+                throw new Exception("Quantity must be greater than zero.");
+            }
+
+            var cartItem = await _cartRepository.GetCartItemByIdAsync(userId, cartItemId);
+            if (cartItem == null)
+                return false;
+
+            cartItem.Quantity = request.Quantity;
+
+            await _cartRepository.SaveChangesAsync();
+
+            return true;
+
+
         }
     }
 }

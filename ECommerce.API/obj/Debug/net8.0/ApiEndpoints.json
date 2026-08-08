@@ -33,8 +33,39 @@
   },
   {
     "ContainingType": "ECommerce.API.Controllers.CartController",
+    "Method": "GetCart",
+    "RelativePath": "api/Cart",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ECommerce.API.Controllers.CartController",
+    "Method": "UpdateCart",
+    "RelativePath": "api/Cart/items/{cartItemId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cartItemId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateCartRequestDto",
+        "Type": "ECommerce.Application.DTOs.Cart.UpdateCartRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ECommerce.API.Controllers.CartController",
     "Method": "AddToCart",
-    "RelativePath": "api/Cart/add/items",
+    "RelativePath": "api/Cart/items/add",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -42,6 +73,22 @@
       {
         "Name": "addToCartRequestDto",
         "Type": "ECommerce.Application.DTOs.Cart.AddToCartRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ECommerce.API.Controllers.CartController",
+    "Method": "DeleteCartItem",
+    "RelativePath": "api/Cart/items/remove/{cartItem}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cartItem",
+        "Type": "System.Guid",
         "IsRequired": true
       }
     ],

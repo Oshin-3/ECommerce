@@ -14,6 +14,8 @@ namespace ECommerce.Application.Interfaces.Repositories
         Task<CartItem?> GetCartItemAsync(Guid cartId, Guid productId);
         Task<CartItem> AddCartItemAsync(CartItem cartItem);
         Task SaveChangesAsync();
+        Task<CartItem?> GetCartItemByIdAsync(Guid userId, Guid cartItemId);
+        void DeleteCartItemAsync(CartItem cartItemId);
 
     }
 }
