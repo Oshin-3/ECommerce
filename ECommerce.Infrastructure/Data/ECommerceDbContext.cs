@@ -35,6 +35,10 @@ namespace ECommerce.Infrastructure.Data
                 .Property(p => p.TotalAmount)
                 .HasPrecision(18, 2);
 
+            modelBuilder.Entity<OrderItem>()
+                .Property(p => p.UnitPrice)
+                .HasPrecision(18, 2);
+
             //User 1 - 1 Cart
             modelBuilder.Entity<Cart>()
                 .HasOne(c => c.User)
