@@ -81,7 +81,7 @@ namespace ECommerce.Application.Services
 
             
             //delete
-            _cartRepository.DeleteCartItemAsync(cartItem);
+            _cartRepository.DeleteCartItemAsync((IEnumerable<CartItem>)cartItem);
             await _cartRepository.SaveChangesAsync();
             return true;
         }

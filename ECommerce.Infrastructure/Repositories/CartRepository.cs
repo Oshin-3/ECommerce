@@ -29,9 +29,9 @@ namespace ECommerce.Infrastructure.Repositories
             return cart;
         }
 
-        public void DeleteCartItemAsync(CartItem cartItemId)
+        public void DeleteCartItemAsync(IEnumerable<CartItem> cartItemId)
         {
-            _dbContext.CartItems.Remove(cartItemId);
+            _dbContext.CartItems.RemoveRange(cartItemId);
         }
 
         public async Task<Cart?> GetCartByUserIdAsync(Guid userId)

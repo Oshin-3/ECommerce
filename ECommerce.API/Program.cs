@@ -49,6 +49,8 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
 
 //inject Automapper
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
