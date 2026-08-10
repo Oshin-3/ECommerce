@@ -1,6 +1,7 @@
 ﻿using ECommerce.Application.Interfaces.Repositories;
 using ECommerce.Domain.Entities;
 using ECommerce.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,28 @@ namespace ECommerce.Infrastructure.Repositories
         public async Task AddOrderItemAsync(IEnumerable<OrderItem> orderItems)
         {
             await _dbContext.OrderItems.AddRangeAsync(orderItems);
+        }
+
+        public async Task<Order> GetOrderByIdAsync(Guid orderId, Guid userId)
+        {
+            var resposne = await _dbContext.Orders
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Product)
+                .FirstOrDefaultAsync(o => o.Id == orderId && o.UserId == userId);
+            if (resposne == null)
+                return null;
+            return resposne;
+        }
+
+        public async Task<List<Order?>> GetOrderByUserIdAsync(Guid userId)
+        {
+            var response = await _dbContext.Orders
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Product)
+                .Where(o => o.UserId == userId).ToListAsync();
+            if (response == null)
+                return null;
+            return response;
         }
 
         public async Task SaveChangesAsync()

@@ -10,6 +10,7 @@ namespace ECommerce.Application.Interfaces.Services
     public interface IOrderService
     {
         Task<OrderResponseDto> CheckOutAsync(Guid userId);
-        
+        Task<List<OrderResponseDto>> GetMyOrdersAsync(Guid userId);
+        Task<OrderResponseDto> GetOrderByIdAsync(Guid orderId, Guid userId);
     }
 }

@@ -13,7 +13,7 @@ namespace ECommerce.Domain.Entities
         public DateTime OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
         public string Status { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        public ApplicationUser User { get; set; } = null;
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     }

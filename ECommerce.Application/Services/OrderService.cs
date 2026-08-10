@@ -63,6 +63,7 @@ namespace ECommerce.Application.Services
             };
 
             await _orderRepository.AddOrderAsync(order);
+            
 
             //create orderItem
             var orderItems = userCart.CartItems.Select(cartItem => new OrderItem
@@ -75,9 +76,9 @@ namespace ECommerce.Application.Services
             }).ToList();
 
             await _orderRepository.AddOrderItemAsync(orderItems);
-
+            
             //remove the stock quantity of the product
-            foreach(var cartItem in userCart.CartItems)
+            foreach (var cartItem in userCart.CartItems)
             {
                 cartItem.Product.StockQuantity -= cartItem.Quantity;
             }            
@@ -85,7 +86,7 @@ namespace ECommerce.Application.Services
             //clear cart
             _cartRepository.DeleteCartItemAsync(userCart.CartItems);
 
-            // await _orderRepository.SaveChangesAsync();
+            await _orderRepository.SaveChangesAsync();
             var response = new OrderResponseDto
             {
                 OrderId = order.Id,
@@ -95,11 +96,68 @@ namespace ECommerce.Application.Services
                 Items = orderItems.Select(orderId => new OrderItemResponseDto
                 {
                     OrderItemId = orderId.Id,
-                    OrderId = orderId.OrderId,
                     ProductId = orderId.ProductId,
+                    ProductName = orderId.Product.Name,
                     Quantity = orderId.Quantity,
                     UnitPrice = orderId.UnitPrice
                 }).ToList()
+            };
+
+            return response;
+        }
+
+        public async Task<List<OrderResponseDto>> GetMyOrdersAsync(Guid userId)
+        {
+            var orders = await _orderRepository.GetOrderByUserIdAsync(userId);
+            if(orders == null)
+            {
+                throw new InvalidOperationException("No orders were found!");
+            }
+            var response = new List<OrderResponseDto>();
+            foreach(var order in orders)
+            {
+                response.Add(new OrderResponseDto
+                {
+                    OrderId = order.Id,
+                    Items = order.OrderItems.Select(orderItem => new OrderItemResponseDto
+                    {
+                        OrderItemId = orderItem.Id,
+                        ProductId = orderItem.ProductId,
+                        ProductName = orderItem.Product.Name,
+                        UnitPrice = orderItem.UnitPrice,
+                        Quantity = orderItem.Quantity
+                    }).ToList(),
+                    OrderDate = order.OrderDate,
+                    Status = order.Status,
+                    TotalAmount = order.TotalAmount
+                });
+            }
+
+            return response;
+        }
+
+        public async Task<OrderResponseDto> GetOrderByIdAsync(Guid orderId, Guid userId)
+        {
+            var order = await _orderRepository.GetOrderByIdAsync(orderId, userId);
+            if (order == null)
+            {
+                throw new Exception("No order found");
+            }
+
+            var response = new OrderResponseDto
+            {
+                OrderId = order.Id,
+                Items = order.OrderItems.Select(orderItem => new OrderItemResponseDto
+                {
+                    OrderItemId = orderItem.Id,
+                    ProductId = orderItem.ProductId,
+                    ProductName = orderItem.Product.Name,
+                    Quantity = orderItem.Quantity,
+                    UnitPrice = orderItem.UnitPrice
+                }).ToList(),
+                OrderDate = order.OrderDate,
+                Status = order.Status,
+                TotalAmount = order.TotalAmount
             };
 
             return response;
