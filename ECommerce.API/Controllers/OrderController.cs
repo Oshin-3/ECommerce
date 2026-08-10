@@ -1,11 +1,14 @@
 ﻿using ECommerce.Application.DTOs.Order;
 using ECommerce.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ECommerce.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
@@ -17,8 +20,16 @@ namespace ECommerce.API.Controllers
         #region CheckOut
         [HttpPost]
         [Route("checkout")]
-        public async Task<IActionResult> Checkout(Guid userId)
+        public async Task<IActionResult> Checkout()
         {
+            //get the authorize userId
+            var userIdValue = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdValue))
+            {
+                return Unauthorized();
+            }
+
+            var userId = Guid.Parse(userIdValue);
             var response = await _orderService.CheckOutAsync(userId);
 
             return Ok(response);
@@ -28,8 +39,16 @@ namespace ECommerce.API.Controllers
         #region Get My Orders
         [HttpGet]
         [Route("my-order")]
-        public async Task<IActionResult> GetMyOrders(Guid userId)
+        public async Task<IActionResult> GetMyOrders()
         {
+            //get the authorize userId
+            var userIdValue = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdValue))
+            {
+                return Unauthorized();
+            }
+
+            var userId = Guid.Parse(userIdValue);
             var response = await _orderService.GetMyOrdersAsync(userId);
             if (response == null)
             {
@@ -42,8 +61,16 @@ namespace ECommerce.API.Controllers
         #region Get Order By Id
         [HttpGet]
         [Route("{orderId}")]
-        public async Task<IActionResult> GetOrderById(Guid orderId, Guid userId)
+        public async Task<IActionResult> GetOrderById(Guid orderId)
         {
+            //get the authorize userId
+            var userIdValue = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdValue))
+            {
+                return Unauthorized();
+            }
+
+            var userId = Guid.Parse(userIdValue);
             var response = await _orderService.GetOrderByIdAsync(orderId, userId);
             if (response == null)
             {

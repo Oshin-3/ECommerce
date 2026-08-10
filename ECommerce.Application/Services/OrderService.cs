@@ -1,4 +1,5 @@
 ﻿using ECommerce.Application.DTOs.Order;
+using ECommerce.Application.Interfaces;
 using ECommerce.Application.Interfaces.Repositories;
 using ECommerce.Application.Interfaces.Services;
 using ECommerce.Domain.Entities;
@@ -15,95 +16,110 @@ namespace ECommerce.Application.Services
     {
         private readonly ICartRepository _cartRepository;
         private readonly IOrderRepository _orderRepository;
+        private readonly IUnitOfWork _unitOfWork;
        
-        public OrderService(ICartRepository cartRepository, IOrderRepository orderRepository)
+        public OrderService(ICartRepository cartRepository, IOrderRepository orderRepository, IUnitOfWork unitOfWork)
         {
             _cartRepository = cartRepository;
             _orderRepository = orderRepository;
+            _unitOfWork = unitOfWork;
         }
         public async Task<OrderResponseDto> CheckOutAsync(Guid userId)
         {
-            //fetch user's cart
-            var userCart = await _cartRepository.GetCartByUserIdAsync(userId);
-            if (userCart == null)
+            await _unitOfWork.BeginTransactionAsync();
+            try
             {
-                throw new InvalidOperationException("Cart not found.");
-            }
-            if(userCart.CartItems == null || !userCart.CartItems.Any())
-            {
-                throw new InvalidOperationException("Cart is empty.");
-            }
-
-            //vaidate stock
-            foreach (var cartItem in userCart.CartItems)
-            {
-                if(cartItem.Product == null)
+                //fetch user's cart
+                var userCart = await _cartRepository.GetCartByUserIdAsync(userId);
+                if (userCart == null)
                 {
-                    throw new InvalidOperationException("Product information could not be loaded.");
+                    throw new InvalidOperationException("Cart not found.");
+                }
+                if (userCart.CartItems == null || !userCart.CartItems.Any())
+                {
+                    throw new InvalidOperationException("Cart is empty.");
                 }
 
-                if(cartItem.Quantity > cartItem.Product.StockQuantity)
+                //vaidate stock
+                foreach (var cartItem in userCart.CartItems)
                 {
-                    throw new InvalidOperationException($"Insuffient stock for the product {cartItem.Product.Name}.");
+                    if (cartItem.Product == null)
+                    {
+                        throw new InvalidOperationException("Product information could not be loaded.");
+                    }
+
+                    if (cartItem.Quantity > cartItem.Product.StockQuantity)
+                    {
+                        throw new InvalidOperationException($"Insuffient stock for the product {cartItem.Product.Name}.");
+                    }
                 }
-            }
 
-            //total cart amount
-            var totalAmount = userCart.CartItems.Sum(ci => ci.Product.Price * ci.Quantity);
+                //total cart amount
+                var totalAmount = userCart.CartItems.Sum(ci => ci.Product.Price * ci.Quantity);
 
-            //create order
-            var order = new Order
-            {
-                Id = Guid.NewGuid(),
-                UserId = userId,
-                OrderDate = DateTime.UtcNow,
-                TotalAmount = totalAmount,
-                Status = OrderStatus.Pending.ToString()
-
-            };
-
-            await _orderRepository.AddOrderAsync(order);
-            
-
-            //create orderItem
-            var orderItems = userCart.CartItems.Select(cartItem => new OrderItem
-            {
-                Id = Guid.NewGuid(),
-                OrderId = order.Id,
-                ProductId = cartItem.ProductId,
-                Quantity = cartItem.Quantity,
-                UnitPrice = cartItem.Product.Price
-            }).ToList();
-
-            await _orderRepository.AddOrderItemAsync(orderItems);
-            
-            //remove the stock quantity of the product
-            foreach (var cartItem in userCart.CartItems)
-            {
-                cartItem.Product.StockQuantity -= cartItem.Quantity;
-            }            
-
-            //clear cart
-            _cartRepository.DeleteCartItemAsync(userCart.CartItems);
-
-            await _orderRepository.SaveChangesAsync();
-            var response = new OrderResponseDto
-            {
-                OrderId = order.Id,
-                OrderDate = order.OrderDate,
-                TotalAmount = totalAmount,
-                Status = OrderStatus.Pending.ToString(),
-                Items = orderItems.Select(orderId => new OrderItemResponseDto
+                //create order
+                var order = new Order
                 {
-                    OrderItemId = orderId.Id,
-                    ProductId = orderId.ProductId,
-                    ProductName = orderId.Product.Name,
-                    Quantity = orderId.Quantity,
-                    UnitPrice = orderId.UnitPrice
-                }).ToList()
-            };
+                    Id = Guid.NewGuid(),
+                    UserId = userId,
+                    OrderDate = DateTime.UtcNow,
+                    TotalAmount = totalAmount,
+                    Status = OrderStatus.Pending.ToString()
 
-            return response;
+                };
+
+                await _orderRepository.AddOrderAsync(order);
+
+
+                //create orderItem
+                var orderItems = userCart.CartItems.Select(cartItem => new OrderItem
+                {
+                    Id = Guid.NewGuid(),
+                    OrderId = order.Id,
+                    ProductId = cartItem.ProductId,
+                    Quantity = cartItem.Quantity,
+                    UnitPrice = cartItem.Product.Price
+                }).ToList();
+
+                await _orderRepository.AddOrderItemAsync(orderItems);
+
+                //remove the stock quantity of the product
+                foreach (var cartItem in userCart.CartItems)
+                {
+                    cartItem.Product.StockQuantity -= cartItem.Quantity;
+                }
+
+                //clear cart
+                _cartRepository.DeleteCartItemAsync(userCart.CartItems);
+
+                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.CommitTransactionAsync();
+
+                var response = new OrderResponseDto
+                {
+                    OrderId = order.Id,
+                    OrderDate = order.OrderDate,
+                    TotalAmount = totalAmount,
+                    Status = OrderStatus.Pending.ToString(),
+                    Items = orderItems.Select(orderId => new OrderItemResponseDto
+                    {
+                        OrderItemId = orderId.Id,
+                        ProductId = orderId.ProductId,
+                        ProductName = orderId.Product.Name,
+                        Quantity = orderId.Quantity,
+                        UnitPrice = orderId.UnitPrice
+                    }).ToList()
+                };
+
+                return response;
+            }
+            catch
+            {
+                await _unitOfWork.RollbackTransactionAsync();
+
+                throw;
+            }
+            
         }
 
         public async Task<List<OrderResponseDto>> GetMyOrdersAsync(Guid userId)
