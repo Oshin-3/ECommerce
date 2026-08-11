@@ -14,6 +14,7 @@ using ECommerce.Infrastructure.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ECommerce.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -124,6 +125,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//add global exception middleware
+app.UseMiddleware<GlobalExceptionMiddleware>();
 //add authentication middleware
 app.UseAuthentication();
 

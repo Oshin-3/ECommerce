@@ -1,4 +1,5 @@
 ﻿using ECommerce.Application.DTOs.Order;
+using ECommerce.Application.Exceptions;
 using ECommerce.Application.Interfaces;
 using ECommerce.Application.Interfaces.Repositories;
 using ECommerce.Application.Interfaces.Services;
@@ -49,7 +50,7 @@ namespace ECommerce.Application.Services
                 }
                 else
                 {
-                    throw new InvalidOperationException("Cannot cancel the order");
+                    throw new BusinessRuleException("Cannot cancel the order");
                 }
                 //retore the stock
                 foreach (var orderItem in order.OrderItems)
@@ -78,7 +79,7 @@ namespace ECommerce.Application.Services
                 var userCart = await _cartRepository.GetCartByUserIdAsync(userId);
                 if (userCart == null)
                 {
-                    throw new InvalidOperationException("Cart not found.");
+                    throw new NotFoundException("Cart not found.");
                 }
                 if (userCart.CartItems == null || !userCart.CartItems.Any())
                 {
@@ -90,12 +91,12 @@ namespace ECommerce.Application.Services
                 {
                     if (cartItem.Product == null)
                     {
-                        throw new InvalidOperationException("Product information could not be loaded.");
+                        throw new NotFoundException("Product information could not be loaded.");
                     }
 
                     if (cartItem.Quantity > cartItem.Product.StockQuantity)
                     {
-                        throw new InvalidOperationException($"Insuffient stock for the product {cartItem.Product.Name}.");
+                        throw new BusinessRuleException($"Insuffient stock for the product {cartItem.Product.Name}.");
                     }
                 }
 
@@ -198,7 +199,7 @@ namespace ECommerce.Application.Services
             var orders = await _orderRepository.GetOrderByUserIdAsync(userId);
             if(orders == null)
             {
-                throw new InvalidOperationException("No orders were found!");
+                throw new NotFoundException("No orders were found!");
             }
             var response = new List<OrderResponseDto>();
             foreach(var order in orders)
@@ -228,7 +229,7 @@ namespace ECommerce.Application.Services
             var order = await _orderRepository.GetOrderByIdAsync(orderId, userId);
             if (order == null)
             {
-                throw new InvalidOperationException("No order found");
+                throw new NotFoundException("No order found");
             }
 
             var response = new OrderResponseDto
@@ -256,7 +257,7 @@ namespace ECommerce.Application.Services
             var order = await _orderRepository.GetOrderByIdAsync(orderId);
             if (order == null)
             {
-                throw new InvalidOperationException("No order found");
+                throw new NotFoundException("No order found");
             }
 
             //validate status transition

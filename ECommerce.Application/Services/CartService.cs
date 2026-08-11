@@ -1,5 +1,6 @@
 ﻿using ECommerce.Application.DTOs.Cart;
 using ECommerce.Application.DTOs.CartItem;
+using ECommerce.Application.Exceptions;
 using ECommerce.Application.Interfaces.Repositories;
 using ECommerce.Application.Interfaces.Services;
 using ECommerce.Domain.Entities;
@@ -25,13 +26,13 @@ namespace ECommerce.Application.Services
             //if quantity is 0
             if(request.Quantity <= 0)
             {
-                throw new Exception("Quantity must be greater than zero.");
+                throw new BusinessRuleException("Quantity must be greater than zero.");
             }
             //check if product exists
             var product = await _productRepository.GetProductByIdAsync(request.ProductId);
             if (product == null)
             {
-                throw new Exception("No Product found!");
+                throw new NotFoundException("No Product found!");
             }               
 
             //get the user cart
@@ -124,7 +125,7 @@ namespace ECommerce.Application.Services
             //verify quantity
             if(request.Quantity <= 0)
             {
-                throw new Exception("Quantity must be greater than zero.");
+                throw new BusinessRuleException("Quantity must be greater than zero.");
             }
 
             var cartItem = await _cartRepository.GetCartItemByIdAsync(userId, cartItemId);
