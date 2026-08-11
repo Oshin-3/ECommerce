@@ -14,5 +14,7 @@ namespace ECommerce.Application.Interfaces.Repositories
         Task SaveChangesAsync();
         Task<List<Order?>> GetOrderByUserIdAsync(Guid userId);
         Task<Order> GetOrderByIdAsync(Guid orderId, Guid userId);
+        Task<Order> GetOrderByIdAsync(Guid orderId);
+        Task<List<Order>> GetAllOrdersAsync();
     }
 }

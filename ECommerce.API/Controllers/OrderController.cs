@@ -1,5 +1,6 @@
 ﻿using ECommerce.Application.DTOs.Order;
 using ECommerce.Application.Interfaces.Services;
+using ECommerce.Domain.Contants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -76,6 +77,57 @@ namespace ECommerce.API.Controllers
             {
                 return NotFound("Order not found!");
             }
+            return Ok(response);
+        }
+        #endregion
+
+        #region Cancel My Order
+        [HttpPost]
+        [Route("my-order/{orderId}/cancel")]
+        public async Task<IActionResult> CancelMyOrder(Guid orderId)
+        {
+            var userIdValue = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdValue))
+            {
+                return Unauthorized();
+            }
+            var userId = Guid.Parse(userIdValue);
+
+            var response = await _orderService.CancelMyOrderAsync(orderId, userId);
+            if (!response)
+            {
+                return NotFound();
+            }
+
+            return Ok("Order Cancelled");
+        }
+
+        #endregion
+
+        #region Admin - Update Order Status
+        [HttpPut]
+        [Route("{orderId}/status")]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> UpdateOrderStatus(Guid orderId, [FromBody] UpdateOrderStatusRequestDto updateOrderStatusRequestDto)
+        {
+            var response = await _orderService.UpdateOrderStatusAsync(orderId, updateOrderStatusRequestDto);
+            if (response == null)
+            {
+                return NotFound("Order not found!");
+            }
+            return Ok(response);
+        }
+
+        #endregion
+
+        #region Admin - Get All Orders
+        [HttpGet]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            var response = await _orderService.GetAllOrdersAsync();
+            if (response == null)
+                return NotFound("No Orders Found!");
             return Ok(response);
         }
         #endregion

@@ -12,5 +12,8 @@ namespace ECommerce.Application.Interfaces.Services
         Task<OrderResponseDto> CheckOutAsync(Guid userId);
         Task<List<OrderResponseDto>> GetMyOrdersAsync(Guid userId);
         Task<OrderResponseDto> GetOrderByIdAsync(Guid orderId, Guid userId);
+        Task<OrderResponseDto> UpdateOrderStatusAsync(Guid orderId, UpdateOrderStatusRequestDto request);
+        Task<bool> CancelMyOrderAsync(Guid orderId, Guid userId);
+        Task<List<OrderResponseDto>> GetAllOrdersAsync();
     }
 }

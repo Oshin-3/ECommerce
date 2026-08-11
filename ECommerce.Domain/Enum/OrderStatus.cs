@@ -12,6 +12,7 @@ namespace ECommerce.Domain.Enum
         Confirmed = 2,
         Shipped = 3,
         Declined = 4,
-        Cancelled = 5
+        Cancelled = 5,
+        Delivered = 6
     }
 }

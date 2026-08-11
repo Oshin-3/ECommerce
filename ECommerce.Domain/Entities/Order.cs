@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECommerce.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace ECommerce.Domain.Entities
         public Guid UserId { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
-        public string Status { get; set; }
+        public OrderStatus Status { get; set; }
         public ApplicationUser User { get; set; } = null;
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
