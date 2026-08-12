@@ -1,4 +1,4 @@
-﻿using ECommerce.Application.DTOs;
+﻿using ECommerce.Application.DTOs.Common;
 using ECommerce.Application.Interfaces.Repositories;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enum;
@@ -31,11 +31,14 @@ namespace ECommerce.Infrastructure.Repositories
 
         public async Task<List<Order>> GetAllOrdersAsync(PaginationQueryDto paginationQuery)
         {
-            var skip = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
-            var take = paginationQuery.PageSize;
-            var response = await _dbContext.Orders
+            var query = _dbContext.Orders
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
+                .AsQueryable();
+
+            var skip = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
+            var take = paginationQuery.PageSize;
+            var response = await query
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();

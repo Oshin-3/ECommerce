@@ -1,4 +1,4 @@
-﻿using ECommerce.Application.DTOs;
+﻿using ECommerce.Application.DTOs.Common;
 using ECommerce.Application.DTOs.Product;
 using ECommerce.Application.Interfaces.Repositories;
 using ECommerce.Domain.Entities;
@@ -19,11 +19,59 @@ namespace ECommerce.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task<List<Product>> GetAllProductsAsync(PaginationQueryDto paginationDto)
+        public async Task<List<Product>> GetAllProductsAsync(ProductQueryDto productQueryDto)
         {
-            int skip = (paginationDto.PageNumber - 1) * paginationDto.PageSize;
-            int take = paginationDto.PageSize;
-            return await _dbContext.Products
+            var query = _dbContext.Products.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(productQueryDto.Search))
+            {
+                query = query.Where(p => 
+                    p.Name.ToLower().Contains(productQueryDto.Search.ToLower()));
+            }
+
+            //check category has value
+            if(productQueryDto.CategoryId.HasValue)
+            {
+                query = query.Where(p =>
+                    p.CategoryId == productQueryDto.CategoryId.Value);
+            }
+
+            //min and max price
+            if(productQueryDto.MinPrice.HasValue)
+            {
+                query = query.Where(p =>
+                    p.Price >= productQueryDto.MinPrice.Value);
+            }
+            if (productQueryDto.MaxPrice.HasValue)
+            {
+                query = query.Where(p =>
+                    p.Price <= productQueryDto.MaxPrice.Value);
+            }
+            //sorting
+            if(!string.IsNullOrEmpty(productQueryDto.SortBy))
+            {
+                var descending = productQueryDto.SortDirection?.ToLower() == "descending";
+
+                query = productQueryDto.SortBy.ToLower() switch
+                {
+                    "name" => descending
+                        ? query.OrderByDescending(p => p.Name)
+                        : query.OrderBy(p => p.Name),
+                    "price" => descending
+                        ? query.OrderByDescending(p => p.Price)
+                        : query.OrderBy(p => p.Price),
+                    "stock" => descending
+                        ? query.OrderByDescending(p => p.StockQuantity)
+                        : query.OrderBy(p => p.StockQuantity),
+                    _ => query.OrderBy(p => p.Name)
+                };
+            }
+            else
+            {
+                query = query.OrderBy(p => p.Name);
+            }
+            int skip = (productQueryDto.PageNumber - 1) * productQueryDto.PageSize;
+            int take = productQueryDto.PageSize;
+            return await query
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();

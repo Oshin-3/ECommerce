@@ -1,4 +1,4 @@
-﻿using ECommerce.Application.DTOs;
+﻿using ECommerce.Application.DTOs.Common;
 using ECommerce.Application.DTOs.Order;
 using ECommerce.Application.Interfaces.Services;
 using ECommerce.Domain.Contants;

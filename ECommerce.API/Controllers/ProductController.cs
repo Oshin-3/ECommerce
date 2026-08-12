@@ -5,7 +5,7 @@ using AutoMapper;
 using ECommerce.Application.DTOs.Product;
 using Microsoft.AspNetCore.Authorization;
 using ECommerce.Domain.Contants;
-using ECommerce.Application.DTOs;
+using ECommerce.Application.DTOs.Common;
 
 namespace ECommerce.API.Controllers
 {
@@ -24,10 +24,10 @@ namespace ECommerce.API.Controllers
         #region Get All Products
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetAllProducts([FromQuery] PaginationQueryDto productPaginationDto)
+        public async Task<IActionResult> GetAllProducts([FromQuery] ProductQueryDto productQueryDto)
         {
             //retrive details from database 
-            var allProducts = await _productRepository.GetAllProductsAsync(productPaginationDto);
+            var allProducts = await _productRepository.GetAllProductsAsync(productQueryDto);
 
             //convert domain model to Dto
             var allProductsDto = _mapper.Map<List<ProductDto>>(allProducts);
