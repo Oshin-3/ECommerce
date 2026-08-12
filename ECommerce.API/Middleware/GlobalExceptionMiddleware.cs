@@ -8,10 +8,12 @@ namespace ECommerce.API.Middleware
     public class GlobalExceptionMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<GlobalExceptionMiddleware> _logger;
 
-        public GlobalExceptionMiddleware(RequestDelegate next)
+        public GlobalExceptionMiddleware(RequestDelegate next, ILogger<GlobalExceptionMiddleware> logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -22,6 +24,9 @@ namespace ECommerce.API.Middleware
             }
             catch(Exception ex)
             {
+                _logger.LogError(ex, "Unhandled exception occurred while processing {Method} {Path}",
+                    context.Request.Method,
+                    context.Request.Path);
                 await HandleExceptionAsync(context, ex);
             }
         }
@@ -40,10 +45,19 @@ namespace ECommerce.API.Middleware
                 _ => StatusCodes.Status500InternalServerError
             };
 
+            var message = exception switch
+            {
+                BusinessRuleException => exception.Message,
+                NotFoundException => exception.Message,
+                ArgumentException => exception.Message,
+                _ => "An unexpected error occurred."
+            };
+
+
             var response = new ErrorResponse
             {
                 StatusCode = context.Response.StatusCode,
-                Message = exception.Message
+                Message = message
             };
 
             var json = JsonSerializer.Serialize(response);
