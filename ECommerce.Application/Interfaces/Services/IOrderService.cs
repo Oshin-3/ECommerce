@@ -1,4 +1,5 @@
-﻿using ECommerce.Application.DTOs.Order;
+﻿using ECommerce.Application.DTOs;
+using ECommerce.Application.DTOs.Order;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace ECommerce.Application.Interfaces.Services
     public interface IOrderService
     {
         Task<OrderResponseDto> CheckOutAsync(Guid userId);
-        Task<List<OrderResponseDto>> GetMyOrdersAsync(Guid userId);
+        Task<List<OrderResponseDto>> GetMyOrdersAsync(Guid userId, PaginationQueryDto paginationQuery);
         Task<OrderResponseDto> GetOrderByIdAsync(Guid orderId, Guid userId);
         Task<OrderResponseDto> UpdateOrderStatusAsync(Guid orderId, UpdateOrderStatusRequestDto request);
         Task<bool> CancelMyOrderAsync(Guid orderId, Guid userId);
-        Task<List<OrderResponseDto>> GetAllOrdersAsync();
+        Task<List<OrderResponseDto>> GetAllOrdersAsync(PaginationQueryDto paginationQuery);
     }
 }

@@ -1,4 +1,5 @@
-﻿using ECommerce.Application.Interfaces.Repositories;
+﻿using ECommerce.Application.DTOs;
+using ECommerce.Application.Interfaces.Repositories;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enum;
 using ECommerce.Infrastructure.Data;
@@ -28,11 +29,15 @@ namespace ECommerce.Infrastructure.Repositories
             await _dbContext.OrderItems.AddRangeAsync(orderItems);
         }
 
-        public async Task<List<Order>> GetAllOrdersAsync()
+        public async Task<List<Order>> GetAllOrdersAsync(PaginationQueryDto paginationQuery)
         {
+            var skip = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
+            var take = paginationQuery.PageSize;
             var response = await _dbContext.Orders
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
+                .Skip(skip)
+                .Take(take)
                 .ToListAsync();
             if (response == null)
                 return null;
@@ -61,11 +66,15 @@ namespace ECommerce.Infrastructure.Repositories
             return response;
         }
 
-        public async Task<List<Order?>> GetOrderByUserIdAsync(Guid userId)
+        public async Task<List<Order?>> GetOrderByUserIdAsync(Guid userId, PaginationQueryDto paginationQuery)
         {
+            var skip = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
+            var take = paginationQuery.PageSize;
             var response = await _dbContext.Orders
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
+                .Skip(skip)
+                .Take(take)
                 .Where(o => o.UserId == userId).ToListAsync();
             if (response == null)
                 return null;

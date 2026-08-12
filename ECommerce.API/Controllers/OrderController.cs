@@ -1,4 +1,5 @@
-﻿using ECommerce.Application.DTOs.Order;
+﻿using ECommerce.Application.DTOs;
+using ECommerce.Application.DTOs.Order;
 using ECommerce.Application.Interfaces.Services;
 using ECommerce.Domain.Contants;
 using Microsoft.AspNetCore.Authorization;
@@ -40,7 +41,7 @@ namespace ECommerce.API.Controllers
         #region Get My Orders
         [HttpGet]
         [Route("my-order")]
-        public async Task<IActionResult> GetMyOrders()
+        public async Task<IActionResult> GetMyOrders([FromQuery] PaginationQueryDto paginationQuery)
         {
             //get the authorize userId
             var userIdValue = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -50,7 +51,7 @@ namespace ECommerce.API.Controllers
             }
 
             var userId = Guid.Parse(userIdValue);
-            var response = await _orderService.GetMyOrdersAsync(userId);
+            var response = await _orderService.GetMyOrdersAsync(userId, paginationQuery);
             if (response == null)
             {
                 return NotFound("Orders not found!");
@@ -123,9 +124,9 @@ namespace ECommerce.API.Controllers
         #region Admin - Get All Orders
         [HttpGet]
         [Authorize(Roles = Roles.Admin)]
-        public async Task<IActionResult> GetAllOrders()
+        public async Task<IActionResult> GetAllOrders([FromQuery] PaginationQueryDto paginationQueryDto)
         {
-            var response = await _orderService.GetAllOrdersAsync();
+            var response = await _orderService.GetAllOrdersAsync(paginationQueryDto);
             if (response == null)
                 return NotFound("No Orders Found!");
             return Ok(response);

@@ -1,4 +1,5 @@
-﻿using ECommerce.Application.DTOs.Order;
+﻿using ECommerce.Application.DTOs;
+using ECommerce.Application.DTOs.Order;
 using ECommerce.Application.Exceptions;
 using ECommerce.Application.Interfaces;
 using ECommerce.Application.Interfaces.Repositories;
@@ -168,9 +169,9 @@ namespace ECommerce.Application.Services
             
         }
 
-        public async Task<List<OrderResponseDto>> GetAllOrdersAsync()
+        public async Task<List<OrderResponseDto>> GetAllOrdersAsync(PaginationQueryDto paginationQuery)
         {
-            var orders = await _orderRepository.GetAllOrdersAsync();
+            var orders = await _orderRepository.GetAllOrdersAsync(paginationQuery);
             var response = new List<OrderResponseDto>();
             foreach(var order in orders)
             {
@@ -194,9 +195,9 @@ namespace ECommerce.Application.Services
             return response;
         }
 
-        public async Task<List<OrderResponseDto>> GetMyOrdersAsync(Guid userId)
+        public async Task<List<OrderResponseDto>> GetMyOrdersAsync(Guid userId, PaginationQueryDto paginationQuery)
         {
-            var orders = await _orderRepository.GetOrderByUserIdAsync(userId);
+            var orders = await _orderRepository.GetOrderByUserIdAsync(userId, paginationQuery);
             if(orders == null)
             {
                 throw new NotFoundException("No orders were found!");

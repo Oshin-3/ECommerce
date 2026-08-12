@@ -1,4 +1,6 @@
-﻿using ECommerce.Application.Interfaces.Repositories;
+﻿using ECommerce.Application.DTOs;
+using ECommerce.Application.DTOs.Product;
+using ECommerce.Application.Interfaces.Repositories;
 using ECommerce.Domain.Entities;
 using ECommerce.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -17,9 +19,14 @@ namespace ECommerce.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task<List<Product>> GetAllProductsAsync()
+        public async Task<List<Product>> GetAllProductsAsync(PaginationQueryDto paginationDto)
         {
-            return await _dbContext.Products.ToListAsync();
+            int skip = (paginationDto.PageNumber - 1) * paginationDto.PageSize;
+            int take = paginationDto.PageSize;
+            return await _dbContext.Products
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
         }
 
         public async Task<Product> GetProductByIdAsync(Guid id)
