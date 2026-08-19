@@ -1,0 +1,345 @@
+2026-08-19 16:11:38.464 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-08-19 16:11:38.506 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-08-19 16:11:38.507 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-08-19 16:11:38.508 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-08-19 16:11:38.523 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-08-19 16:11:38.539 +05:30 [INF] Applying migration '20260819104114_AddImageUrlForProduct'.
+2026-08-19 16:11:38.582 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Products] ADD [ImageUrl] nvarchar(max) NULL;
+2026-08-19 16:11:38.584 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260819104114_AddImageUrlForProduct', N'8.0.29');
+2026-08-19 16:50:24.758 +05:30 [INF] Executed DbCommand (117ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 16:50:24.903 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 16:50:24.928 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-19 16:50:25.030 +05:30 [INF] User profile is available. Using 'C:\Users\Oshin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-19 16:50:25.444 +05:30 [INF] Now listening on: https://localhost:7056
+2026-08-19 16:50:25.446 +05:30 [INF] Now listening on: http://localhost:5122
+2026-08-19 16:50:25.559 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-19 16:50:25.561 +05:30 [INF] Hosting environment: Development
+2026-08-19 16:50:25.563 +05:30 [INF] Content root path: D:\Projects\ECommerce\ECommerce.API
+2026-08-19 16:50:26.596 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger - null null
+2026-08-19 16:50:26.884 +05:30 [INF] HTTP GET /swagger responded 301 in 10.7442 ms
+2026-08-19 16:50:26.897 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger - 301 0 null 324.4214ms
+2026-08-19 16:50:26.906 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/index.html - null null
+2026-08-19 16:50:27.028 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 109.6924 ms
+2026-08-19 16:50:27.033 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/index.html - 200 null text/html;charset=utf-8 127.5753ms
+2026-08-19 16:50:27.043 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/swagger-ui.css - null null
+2026-08-19 16:50:27.043 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/swagger-ui-standalone-preset.js - null null
+2026-08-19 16:50:27.043 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/swagger-ui-bundle.js - null null
+2026-08-19 16:50:27.043 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-19 16:50:27.126 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_vs/browserLink - null null
+2026-08-19 16:50:27.129 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - 200 13762 application/javascript; charset=utf-8 85.5731ms
+2026-08-19 16:50:27.145 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-08-19 16:50:27.146 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-08-19 16:50:27.163 +05:30 [INF] HTTP GET /swagger/swagger-ui-standalone-preset.js responded 200 in 106.5039 ms
+2026-08-19 16:50:27.163 +05:30 [INF] HTTP GET /swagger/swagger-ui.css responded 200 in 112.0845 ms
+2026-08-19 16:50:27.170 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 126.5712ms
+2026-08-19 16:50:27.178 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/swagger-ui.css - 200 152034 text/css 134.5482ms
+2026-08-19 16:50:27.220 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-08-19 16:50:27.229 +05:30 [INF] HTTP GET /swagger/swagger-ui-bundle.js responded 200 in 166.1149 ms
+2026-08-19 16:50:27.233 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 190.3103ms
+2026-08-19 16:50:27.269 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_vs/browserLink - 200 null text/javascript; charset=UTF-8 143.1206ms
+2026-08-19 16:50:27.429 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - null null
+2026-08-19 16:50:27.455 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/favicon-32x32.png - null null
+2026-08-19 16:50:27.462 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-08-19 16:50:27.467 +05:30 [INF] HTTP GET /swagger/favicon-32x32.png responded 200 in 4.7847 ms
+2026-08-19 16:50:27.469 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 34.2148 ms
+2026-08-19 16:50:27.486 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/favicon-32x32.png - 200 628 image/png 31.5759ms
+2026-08-19 16:50:27.535 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 106.6051ms
+2026-08-19 16:51:22.640 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7056/api/Auth/Login - application/json 60
+2026-08-19 16:51:24.399 +05:30 [INF] Executing endpoint 'ECommerce.API.Controllers.AuthController.Login (ECommerce.API)'
+2026-08-19 16:51:24.438 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ECommerce.Application.DTOs.Auth.LoginRequestDto) on controller ECommerce.API.Controllers.AuthController (ECommerce.API).
+2026-08-19 16:51:24.632 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-19 16:51:24.882 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-08-19 16:51:25.000 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2026-08-19 16:51:25.011 +05:30 [INF] Executed action ECommerce.API.Controllers.AuthController.Login (ECommerce.API) in 564.7706ms
+2026-08-19 16:51:25.016 +05:30 [INF] Executed endpoint 'ECommerce.API.Controllers.AuthController.Login (ECommerce.API)'
+2026-08-19 16:51:25.022 +05:30 [INF] HTTP POST /api/Auth/Login responded 200 in 2367.6387 ms
+2026-08-19 16:51:25.033 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7056/api/Auth/Login - 200 null text/plain; charset=utf-8 2393.6464ms
+2026-08-19 16:53:50.547 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 16:53:50.618 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 16:53:50.631 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-19 16:53:50.675 +05:30 [INF] User profile is available. Using 'C:\Users\Oshin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-19 16:53:50.827 +05:30 [INF] Now listening on: https://localhost:7056
+2026-08-19 16:53:50.828 +05:30 [INF] Now listening on: http://localhost:5122
+2026-08-19 16:53:50.892 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-19 16:53:50.894 +05:30 [INF] Hosting environment: Development
+2026-08-19 16:53:50.895 +05:30 [INF] Content root path: D:\Projects\ECommerce\ECommerce.API
+2026-08-19 16:53:51.398 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/index.html - null null
+2026-08-19 16:53:51.613 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 75.1183 ms
+2026-08-19 16:53:51.624 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/index.html - 200 null text/html;charset=utf-8 238.9077ms
+2026-08-19 16:53:51.729 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-19 16:53:51.729 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_vs/browserLink - null null
+2026-08-19 16:53:51.746 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - 200 13762 application/javascript; charset=utf-8 16.3725ms
+2026-08-19 16:53:51.789 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_vs/browserLink - 200 null text/javascript; charset=UTF-8 59.8739ms
+2026-08-19 16:53:52.306 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - null null
+2026-08-19 16:53:52.334 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 24.6432 ms
+2026-08-19 16:53:52.337 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 31.185ms
+2026-08-19 16:54:41.336 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/api/Category - null null
+2026-08-19 16:54:41.556 +05:30 [INF] Executing endpoint 'ECommerce.API.Controllers.CategoryController.GetAllCategories (ECommerce.API)'
+2026-08-19 16:54:41.586 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllCategories() on controller ECommerce.API.Controllers.CategoryController (ECommerce.API).
+2026-08-19 16:54:41.817 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Categories] AS [c]
+2026-08-19 16:54:41.882 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ECommerce.Application.DTOs.Category.CategoryDto, ECommerce.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-19 16:54:41.916 +05:30 [INF] Executed action ECommerce.API.Controllers.CategoryController.GetAllCategories (ECommerce.API) in 321.4729ms
+2026-08-19 16:54:41.920 +05:30 [INF] Executed endpoint 'ECommerce.API.Controllers.CategoryController.GetAllCategories (ECommerce.API)'
+2026-08-19 16:54:41.924 +05:30 [INF] HTTP GET /api/Category responded 200 in 571.3001 ms
+2026-08-19 16:54:41.933 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/api/Category - 200 null application/json; charset=utf-8 597.2397ms
+2026-08-19 16:54:50.755 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7056/api/Product/create - application/json 160
+2026-08-19 16:54:50.767 +05:30 [INF] Executing endpoint 'ECommerce.API.Controllers.ProductController.CreateProduct (ECommerce.API)'
+2026-08-19 16:54:50.787 +05:30 [INF] Route matched with {action = "CreateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateProduct(ECommerce.Application.DTOs.Product.AddProductRequestDto) on controller ECommerce.API.Controllers.ProductController (ECommerce.API).
+2026-08-19 16:54:50.901 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-08-19 16:54:50.929 +05:30 [INF] Executed action ECommerce.API.Controllers.ProductController.CreateProduct (ECommerce.API) in 139.7733ms
+2026-08-19 16:54:50.932 +05:30 [INF] Executed endpoint 'ECommerce.API.Controllers.ProductController.CreateProduct (ECommerce.API)'
+2026-08-19 16:54:50.934 +05:30 [INF] HTTP POST /api/Product/create responded 400 in 172.5356 ms
+2026-08-19 16:54:50.937 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7056/api/Product/create - 400 null application/problem+json; charset=utf-8 182.3698ms
+2026-08-19 17:12:07.777 +05:30 [INF] Executed DbCommand (47ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 17:12:07.904 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 17:12:07.922 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-19 17:12:07.997 +05:30 [INF] User profile is available. Using 'C:\Users\Oshin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-19 17:12:08.210 +05:30 [INF] Now listening on: https://localhost:7056
+2026-08-19 17:12:08.212 +05:30 [INF] Now listening on: http://localhost:5122
+2026-08-19 17:12:08.318 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-19 17:12:08.319 +05:30 [INF] Hosting environment: Development
+2026-08-19 17:12:08.320 +05:30 [INF] Content root path: D:\Projects\ECommerce\ECommerce.API
+2026-08-19 17:12:08.720 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/index.html - null null
+2026-08-19 17:12:08.954 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 96.1198 ms
+2026-08-19 17:12:08.965 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/index.html - 200 null text/html;charset=utf-8 258.3458ms
+2026-08-19 17:12:09.067 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-19 17:12:09.067 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_vs/browserLink - null null
+2026-08-19 17:12:09.088 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - 200 13762 application/javascript; charset=utf-8 20.9345ms
+2026-08-19 17:12:09.149 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_vs/browserLink - 200 null text/javascript; charset=UTF-8 81.6387ms
+2026-08-19 17:12:09.278 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - null null
+2026-08-19 17:12:09.307 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 24.3181 ms
+2026-08-19 17:12:09.312 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 34.7338ms
+2026-08-19 17:12:48.183 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/api/Product - null null
+2026-08-19 17:12:48.434 +05:30 [INF] Executing endpoint 'ECommerce.API.Controllers.ProductController.GetAllProducts (ECommerce.API)'
+2026-08-19 17:12:48.498 +05:30 [INF] Route matched with {action = "GetAllProducts", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllProducts(ECommerce.Application.DTOs.Product.ProductQueryDto) on controller ECommerce.API.Controllers.ProductController (ECommerce.API).
+2026-08-19 17:12:48.853 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CategoryId], [p].[Description], [p].[ImageUrl], [p].[Name], [p].[Price], [p].[StockQuantity]
+FROM [Products] AS [p]
+ORDER BY [p].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-08-19 17:12:48.931 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ECommerce.Application.DTOs.Product.ProductDto, ECommerce.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-19 17:12:48.973 +05:30 [INF] Executed action ECommerce.API.Controllers.ProductController.GetAllProducts (ECommerce.API) in 459.315ms
+2026-08-19 17:12:48.979 +05:30 [INF] Executed endpoint 'ECommerce.API.Controllers.ProductController.GetAllProducts (ECommerce.API)'
+2026-08-19 17:12:48.986 +05:30 [INF] HTTP GET /api/Product responded 200 in 775.1295 ms
+2026-08-19 17:12:48.997 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/api/Product - 200 null application/json; charset=utf-8 814.6162ms
+2026-08-19 17:14:06.301 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7056/api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image - multipart/form-data; boundary=----WebKitFormBoundaryyQFg3D0euYK7hwG3 99785
+2026-08-19 17:14:06.318 +05:30 [INF] Executing endpoint 'ECommerce.API.Controllers.ProductController.UploadProductImage (ECommerce.API)'
+2026-08-19 17:14:06.328 +05:30 [INF] Route matched with {action = "UploadProductImage", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadProductImage(System.Guid, Microsoft.AspNetCore.Http.IFormFile) on controller ECommerce.API.Controllers.ProductController (ECommerce.API).
+2026-08-19 17:14:38.460 +05:30 [INF] Executed action ECommerce.API.Controllers.ProductController.UploadProductImage (ECommerce.API) in 32127.9808ms
+2026-08-19 17:14:38.464 +05:30 [INF] Executed endpoint 'ECommerce.API.Controllers.ProductController.UploadProductImage (ECommerce.API)'
+2026-08-19 17:14:41.654 +05:30 [ERR] Unhandled exception occurred while processing POST /api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ECommerce.API.Controllers.ProductController.UploadProductImage(Guid productId, IFormFile image) in D:\Projects\ECommerce\ECommerce.API\Controllers\ProductController.cs:line 45
+   at ECommerce.API.Controllers.ProductController.UploadProductImage(Guid productId, IFormFile image) in D:\Projects\ECommerce\ECommerce.API\Controllers\ProductController.cs:line 50
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at ECommerce.API.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Projects\ECommerce\ECommerce.API\Middleware\GlobalExceptionMiddleware.cs:line 23
+2026-08-19 17:14:45.157 +05:30 [ERR] HTTP POST /api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image responded 500 in 38844.1670 ms
+2026-08-19 17:14:45.166 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7056/api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image - 500 null application/json 38865.8914ms
+2026-08-19 17:15:43.420 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 17:15:43.493 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 17:15:43.505 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-19 17:15:43.553 +05:30 [INF] User profile is available. Using 'C:\Users\Oshin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-19 17:15:43.707 +05:30 [INF] Now listening on: https://localhost:7056
+2026-08-19 17:15:43.708 +05:30 [INF] Now listening on: http://localhost:5122
+2026-08-19 17:15:43.795 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-19 17:15:43.796 +05:30 [INF] Hosting environment: Development
+2026-08-19 17:15:43.797 +05:30 [INF] Content root path: D:\Projects\ECommerce\ECommerce.API
+2026-08-19 17:15:44.542 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/index.html - null null
+2026-08-19 17:15:44.749 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 70.9784 ms
+2026-08-19 17:15:44.760 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/index.html - 200 null text/html;charset=utf-8 229.3555ms
+2026-08-19 17:15:44.921 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_vs/browserLink - null null
+2026-08-19 17:15:44.921 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-19 17:15:44.943 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - 200 13762 application/javascript; charset=utf-8 21.9332ms
+2026-08-19 17:15:44.980 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_vs/browserLink - 200 null text/javascript; charset=UTF-8 59.7312ms
+2026-08-19 17:15:45.065 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - null null
+2026-08-19 17:15:45.100 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 30.7179 ms
+2026-08-19 17:15:45.105 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 40.4243ms
+2026-08-19 17:16:04.843 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7056/api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image - multipart/form-data; boundary=----WebKitFormBoundarybEL5IPQxbs9soi2A 99785
+2026-08-19 17:16:05.065 +05:30 [INF] Executing endpoint 'ECommerce.API.Controllers.ProductController.UploadProductImage (ECommerce.API)'
+2026-08-19 17:16:05.106 +05:30 [INF] Route matched with {action = "UploadProductImage", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadProductImage(System.Guid, Microsoft.AspNetCore.Http.IFormFile) on controller ECommerce.API.Controllers.ProductController (ECommerce.API).
+2026-08-19 17:16:38.295 +05:30 [INF] Executed action ECommerce.API.Controllers.ProductController.UploadProductImage (ECommerce.API) in 33170.2051ms
+2026-08-19 17:16:38.300 +05:30 [INF] Executed endpoint 'ECommerce.API.Controllers.ProductController.UploadProductImage (ECommerce.API)'
+2026-08-19 17:16:39.822 +05:30 [ERR] Unhandled exception occurred while processing POST /api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ECommerce.API.Controllers.ProductController.UploadProductImage(Guid productId, IFormFile image) in D:\Projects\ECommerce\ECommerce.API\Controllers\ProductController.cs:line 45
+   at ECommerce.API.Controllers.ProductController.UploadProductImage(Guid productId, IFormFile image) in D:\Projects\ECommerce\ECommerce.API\Controllers\ProductController.cs:line 50
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at ECommerce.API.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Projects\ECommerce\ECommerce.API\Middleware\GlobalExceptionMiddleware.cs:line 23
+2026-08-19 17:16:39.884 +05:30 [ERR] HTTP POST /api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image responded 500 in 35031.5933 ms
+2026-08-19 17:16:39.897 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7056/api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image - 500 null application/json 35053.8794ms
+2026-08-19 17:17:25.059 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7056/api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image - multipart/form-data; boundary=----WebKitFormBoundaryLcZkR23SjIM0S4Iw 99785
+2026-08-19 17:17:25.079 +05:30 [INF] Executing endpoint 'ECommerce.API.Controllers.ProductController.UploadProductImage (ECommerce.API)'
+2026-08-19 17:17:25.081 +05:30 [INF] Route matched with {action = "UploadProductImage", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadProductImage(System.Guid, Microsoft.AspNetCore.Http.IFormFile) on controller ECommerce.API.Controllers.ProductController (ECommerce.API).
+2026-08-19 17:21:02.300 +05:30 [INF] Executed DbCommand (42ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 17:21:02.378 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 17:21:02.391 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-19 17:21:02.435 +05:30 [INF] User profile is available. Using 'C:\Users\Oshin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-19 17:21:02.569 +05:30 [INF] Now listening on: https://localhost:7056
+2026-08-19 17:21:02.571 +05:30 [INF] Now listening on: http://localhost:5122
+2026-08-19 17:21:02.625 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-19 17:21:02.627 +05:30 [INF] Hosting environment: Development
+2026-08-19 17:21:02.629 +05:30 [INF] Content root path: D:\Projects\ECommerce\ECommerce.API
+2026-08-19 17:21:03.296 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/index.html - null null
+2026-08-19 17:21:03.501 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 74.5981 ms
+2026-08-19 17:21:03.512 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/index.html - 200 null text/html;charset=utf-8 227.9425ms
+2026-08-19 17:21:03.611 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_vs/browserLink - null null
+2026-08-19 17:21:03.611 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-19 17:21:03.631 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - 200 13762 application/javascript; charset=utf-8 20.7182ms
+2026-08-19 17:21:03.671 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_vs/browserLink - 200 null text/javascript; charset=UTF-8 60.6651ms
+2026-08-19 17:21:03.729 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - null null
+2026-08-19 17:21:03.761 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 27.6502 ms
+2026-08-19 17:21:03.765 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 36.4599ms
+2026-08-19 17:21:22.407 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7056/api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image - multipart/form-data; boundary=----WebKitFormBoundaryloeLYy3iLI6EUF9A 99785
+2026-08-19 17:21:22.616 +05:30 [INF] Executing endpoint 'ECommerce.API.Controllers.ProductController.UploadProductImage (ECommerce.API)'
+2026-08-19 17:21:22.660 +05:30 [INF] Route matched with {action = "UploadProductImage", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadProductImage(System.Guid, Microsoft.AspNetCore.Http.IFormFile) on controller ECommerce.API.Controllers.ProductController (ECommerce.API).
+2026-08-19 17:21:50.228 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 17:21:50.305 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-19 17:21:50.318 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-19 17:21:50.364 +05:30 [INF] User profile is available. Using 'C:\Users\Oshin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-19 17:21:50.504 +05:30 [INF] Now listening on: https://localhost:7056
+2026-08-19 17:21:50.505 +05:30 [INF] Now listening on: http://localhost:5122
+2026-08-19 17:21:50.581 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-19 17:21:50.583 +05:30 [INF] Hosting environment: Development
+2026-08-19 17:21:50.584 +05:30 [INF] Content root path: D:\Projects\ECommerce\ECommerce.API
+2026-08-19 17:21:50.947 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/index.html - null null
+2026-08-19 17:21:51.149 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 72.4146 ms
+2026-08-19 17:21:51.198 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/index.html - 200 null text/html;charset=utf-8 259.826ms
+2026-08-19 17:21:51.331 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_vs/browserLink - null null
+2026-08-19 17:21:51.331 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-19 17:21:51.351 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_framework/aspnetcore-browser-refresh.js - 200 13762 application/javascript; charset=utf-8 19.634ms
+2026-08-19 17:21:51.385 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/_vs/browserLink - 200 null text/javascript; charset=UTF-8 54.3652ms
+2026-08-19 17:21:51.482 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - null null
+2026-08-19 17:21:51.507 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 22.0013 ms
+2026-08-19 17:21:51.511 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 29.7737ms
+2026-08-19 17:22:07.370 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7056/api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image - multipart/form-data; boundary=----WebKitFormBoundaryUPBVZuUODrGvTikV 99785
+2026-08-19 17:22:07.578 +05:30 [INF] Executing endpoint 'ECommerce.API.Controllers.ProductController.UploadProductImage (ECommerce.API)'
+2026-08-19 17:22:07.619 +05:30 [INF] Route matched with {action = "UploadProductImage", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadProductImage(System.Guid, Microsoft.AspNetCore.Http.IFormFile) on controller ECommerce.API.Controllers.ProductController (ECommerce.API).
+2026-08-19 17:23:04.663 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Description], [p].[ImageUrl], [p].[Name], [p].[Price], [p].[StockQuantity]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__id_0
+2026-08-19 17:23:20.816 +05:30 [INF] Executed DbCommand (27ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Products] SET [ImageUrl] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+2026-08-19 17:23:23.997 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-19 17:23:24.052 +05:30 [INF] Executed action ECommerce.API.Controllers.ProductController.UploadProductImage (ECommerce.API) in 76425.7089ms
+2026-08-19 17:23:24.055 +05:30 [INF] Executed endpoint 'ECommerce.API.Controllers.ProductController.UploadProductImage (ECommerce.API)'
+2026-08-19 17:23:24.058 +05:30 [INF] HTTP POST /api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image responded 200 in 76678.8898 ms
+2026-08-19 17:23:24.069 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7056/api/Product/6a238a92-2d34-462e-93b7-ccb5c00eeea3/image - 200 null application/json; charset=utf-8 76699.1694ms
+2026-08-19 17:23:34.742 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7056/api/Product - null null
+2026-08-19 17:23:34.755 +05:30 [INF] Executing endpoint 'ECommerce.API.Controllers.ProductController.GetAllProducts (ECommerce.API)'
+2026-08-19 17:23:34.765 +05:30 [INF] Route matched with {action = "GetAllProducts", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllProducts(ECommerce.Application.DTOs.Product.ProductQueryDto) on controller ECommerce.API.Controllers.ProductController (ECommerce.API).
+2026-08-19 17:23:34.838 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CategoryId], [p].[Description], [p].[ImageUrl], [p].[Name], [p].[Price], [p].[StockQuantity]
+FROM [Products] AS [p]
+ORDER BY [p].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-08-19 17:23:36.627 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ECommerce.Application.DTOs.Product.ProductDto, ECommerce.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-19 17:23:36.647 +05:30 [INF] Executed action ECommerce.API.Controllers.ProductController.GetAllProducts (ECommerce.API) in 1879.5563ms
+2026-08-19 17:23:36.651 +05:30 [INF] Executed endpoint 'ECommerce.API.Controllers.ProductController.GetAllProducts (ECommerce.API)'
+2026-08-19 17:23:36.652 +05:30 [INF] HTTP GET /api/Product responded 200 in 1905.5361 ms
+2026-08-19 17:23:36.656 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7056/api/Product - 200 null application/json; charset=utf-8 1913.4822ms

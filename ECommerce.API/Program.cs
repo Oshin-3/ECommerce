@@ -18,6 +18,7 @@ using ECommerce.API.Middleware;
 using Serilog;
 using FluentValidation;
 using ECommerce.Application.Validators;
+using ECommerce.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +57,8 @@ builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IProductImageService, LocalProductImageService>();
+builder.Services.AddScoped<IUpdateProductImageService, UpdateProductImageService>();
 
 //inject Automapper
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
@@ -141,6 +144,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 
 //add global exception middleware

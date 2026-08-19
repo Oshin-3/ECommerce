@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using ECommerce.Domain.Contants;
 using ECommerce.Application.DTOs.Common;
 using FluentValidation;
+using ECommerce.Application.Interfaces.Services;
 
 namespace ECommerce.API.Controllers
 {
@@ -17,14 +18,46 @@ namespace ECommerce.API.Controllers
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
         private readonly IValidator<ProductQueryDto> _validator;
+        private readonly IProductImageService _productImageService;
+        private readonly IUpdateProductImageService _productService;
         public ProductController(IProductRepository productRepository, 
             IMapper mapper,
-            IValidator<ProductQueryDto> validator)
+            IValidator<ProductQueryDto> validator,
+            IProductImageService productImageService,
+            IUpdateProductImageService productService)
         {
             _productRepository = productRepository;
             _mapper = mapper;
             _validator = validator;
+            _productImageService = productImageService;
+            _productService = productService;
+
         }
+
+        #region Upload Product Image
+        [HttpPost]
+        [Route("{productId:guid}/image")]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> UploadProductImage(Guid productId, IFormFile image)
+        {
+            if (image == null || image.Length == 0)
+            {
+                return BadRequest("Please select an image");
+            }
+
+            await using var stream = image.OpenReadStream();
+            var imageUrl = await _productImageService.UploadImageAsync(
+                    stream, image.FileName, image.ContentType);
+
+            await _productService.UpdateProductImageAsync(productId, imageUrl);
+
+            return Ok(new
+            {
+                ImageUrl = imageUrl
+            });
+        }
+
+        #endregion
 
         #region Get All Products
         [HttpGet]
@@ -72,6 +105,7 @@ namespace ECommerce.API.Controllers
         [Route("create")]
         public async Task<IActionResult> CreateProduct([FromBody] AddProductRequestDto addProductRequestDto)
         {
+            
             //convert dto to domain model
             var newProduct = _mapper.Map<Product>(addProductRequestDto);
 
