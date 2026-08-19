@@ -6,6 +6,7 @@ using ECommerce.Application.DTOs.Product;
 using Microsoft.AspNetCore.Authorization;
 using ECommerce.Domain.Contants;
 using ECommerce.Application.DTOs.Common;
+using FluentValidation;
 
 namespace ECommerce.API.Controllers
 {
@@ -13,12 +14,16 @@ namespace ECommerce.API.Controllers
     [Route("api/[controller]")]
     public class ProductController : Controller
     {
-        readonly IProductRepository _productRepository;
-        readonly IMapper _mapper;
-        public ProductController(IProductRepository productRepository, IMapper mapper)
+        private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
+        private readonly IValidator<ProductQueryDto> _validator;
+        public ProductController(IProductRepository productRepository, 
+            IMapper mapper,
+            IValidator<ProductQueryDto> validator)
         {
             _productRepository = productRepository;
             _mapper = mapper;
+            _validator = validator;
         }
 
         #region Get All Products
@@ -26,6 +31,13 @@ namespace ECommerce.API.Controllers
         [Authorize]
         public async Task<IActionResult> GetAllProducts([FromQuery] ProductQueryDto productQueryDto)
         {
+            //validate
+            var validationResult = await _validator.ValidateAsync(productQueryDto);
+            if(!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors
+                    .Select(e => e.ErrorMessage));
+            }
             //retrive details from database 
             var allProducts = await _productRepository.GetAllProductsAsync(productQueryDto);
 

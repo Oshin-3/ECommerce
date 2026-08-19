@@ -16,6 +16,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ECommerce.API.Middleware;
 using Serilog;
+using FluentValidation;
+using ECommerce.Application.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -125,6 +127,9 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.Host.UseSerilog();
+
+//inject FluentValidation
+builder.Services.AddValidatorsFromAssemblyContaining<ProductQueryValidator>();
 
 var app = builder.Build();
 
